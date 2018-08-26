@@ -1,0 +1,37 @@
+<div>
+    <a href="" class="dropdown-button btn btn-large purple lighten-2" style="margin-top: 2rem;" data-activates="dropdown1">{{currentYear}}</a>
+    <ul id='dropdown1' class='dropdown-content'>
+        <li *ngFor="let year of years" (click)="getExpenses(year,currentMonth)">
+            <a href="#!">{{year}}</a>
+        </li>
+    </ul>
+</div>
+<div class="row">
+    <div class="col s12">
+        <ul class="tabs">
+            <li class="tab col s1" *ngFor="let month of months" (click)="getExpenses(currentYear,month)">
+                <a href="">{{month}}</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col s4">Description</div>
+    <div class="col s2">Amount</div>
+    <div class="col s2">Month</div>
+    <div class="col s2">Year</div>
+</div>
+
+<ul class="collection" *ngIf="expenses">
+    <li class="collection-item" *ngFor="let expense of expenses">
+        <div class="row">
+            <div class="col s4">{{expense.description}}</div>
+            <div class="col s2">{{expense.amount}}</div>
+            <div class="col s2">{{expense.month}}</div>
+            <div class="col s2">{{expense.year}}</div>
+            <div class="col s2">
+                <button (click)="delete(expense._id)" class="btn  red darken-3 white-text">Delete</button>
+            </div>
+        </div>
+    </li>
+</ul>

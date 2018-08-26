@@ -1,0 +1,100 @@
+<div>
+  <!-- Modal Trigger -->
+  <a class="btn modal-trigger" href="#modal">
+    <i class="material-icons">add</i>
+  </a>
+  <!-- Modal Structure -->
+  <div id="modal" class="modal">
+    <form class="container">
+      <h4 style="margin-top: 40px">Ajouter Une Dépense</h4>
+      <div class="input-field">
+        <input [(ngModel)]="description" name="description" type="text" id="description" required>
+        <label for="description">Description</label>
+      </div>
+      <div class="input-field">
+        <input [(ngModel)]="amount" name="amount" type="text" id="amount" required>
+        <label for="amount">Amount</label>
+      </div>
+      <div class="input-field">
+        <input [(ngModel)]="month" name="month" type="text" id="month" required>
+        <label for="month">Month</label>
+      </div>
+      <div class="input-field">
+        <input [(ngModel)]="year" name="year" type="text" id="year" required>
+        <label for="year">Year</label>
+      </div>
+      <a style="margin-bottom: 40px;margin-top: 20px" (click)="submitButton()" class="btn green waves-effect waves-light">Add</a>
+    </form>
+  </div>
+  <div>
+    <div>
+      <a href="" class="dropdown-button btn btn-large purple lighten-2" style="margin-top: 2rem;" data-activates="dropdown1">
+        <div style="font-size:30px">
+          {{currentYear}}
+
+          <i class="material-icons">
+            expand_more
+          </i>
+        </div>
+      </a>
+      <ul id='dropdown1' class='dropdown-content'>
+        <li *ngFor="let year of years" (click)="getExpenses(year,currentMonth)">
+          <a href="#!">{{year}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s1" *ngFor="let month of months" (click)="getExpenses(currentYear,month)">
+            <a href="">{{month}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div *ngIf="expenses.length">
+      <div class="row " style="padding-top:20px;padding-bottom:20px">
+        <div class="col s4">Description</div>
+        <div class="col s2">Amount</div>
+        <div class="col s2">Month</div>
+        <div class="col s2">Year</div>
+      </div>
+      <ul class="collection">
+        <li class="collection-item" *ngFor="let expense of expenses">
+          <div class="row">
+            <div class="col s4">{{expense.description}}</div>
+            <div class="col s2">{{expense.amount}}</div>
+            <div class="col s2">{{expense.month}}</div>
+            <div class="col s2">{{expense.year}}</div>
+            <div class="col s2">
+              <button (click)="delete(expense._id)" class="btn  red darken-3 white-text"><i class="material-icons">
+                  clear
+                </i></button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="!expenses.length">
+      <p style="text-align:center;" [innerHTML]="resultats"></p>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- 
+      <div class="input-field">
+        <select class="browser-default">
+          <option value="" disabled selected>Months</option>
+          <option *ngFor="let month of months" value="{{month}}">{{month}} hnk</option>
+        </select>
+      </div>
+      <div class="input-field">
+        <select class="browser-default">
+          <option value="" disabled selected>Years</option>
+          <option *ngFor="let year of years" value="{{year}}">{{year}} ji</option>
+        </select>
+      </div>
+      -->
