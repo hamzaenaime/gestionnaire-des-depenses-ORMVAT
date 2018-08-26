@@ -9,12 +9,10 @@ import { AddComponent } from "./components/add/add.component";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import { ExpenseComponent } from "./components/expense/expense.component";
-
 import { ExpensesService } from "./services/expenses.service";
 
 @NgModule({
-  declarations: [AppComponent, AddComponent, ExpenseComponent],
+  declarations: [AppComponent, AddComponent],
   imports: [BrowserModule, BrowserAnimationsModule, HttpModule, FormsModule],
   providers: [ExpensesService],
   bootstrap: [AppComponent]
